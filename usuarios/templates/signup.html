@@ -1,0 +1,26 @@
+{% extends "base.html" %} {% block content %}
+<h1>Signup</h1>
+
+{{ error }}
+
+<form action="" method="POST">
+  {% csrf_token %}
+
+  <label for="nombres">Nombres:</label>
+  <input type="text" name="nombres" required id="nombres" />
+
+  <label for="apellidos">Apellidos:</label>
+  <input type="text" name="apellidos" required id="apellidos" />
+
+  <label for="usuario">Usuario:</label>
+  <input type="text" name="usuario" autofocus required id="usuario" />
+
+  <label for="contra1">Contraseña:</label>
+  <input type="password" name="contra1" required id="contra1" />
+
+  <label for="contra2">Confirmar la contraseña:</label>
+  <input type="password" name="contra2" required id="contra2" />
+
+  <button>Registrarse</button>
+</form>
+{% endblock content %}
