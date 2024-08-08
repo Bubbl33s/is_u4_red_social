@@ -1,0 +1,7 @@
+:root {
+  --primary-red: rgb(218, 0, 55);
+  --primary-gray: rgb(68, 68, 68);
+  --primary-black: rgb(23, 23, 23);
+  --primary-light: rgb(237, 237, 237);
+  --font-family: 'Arial, sans-serif';
+}

@@ -1,25 +1,23 @@
 {% extends "base.html" %} {% block content %}
 <h1>Signup</h1>
 
-{{ error }}
-
 <form action="" method="POST">
   {% csrf_token %}
 
   <label for="nombres">Nombres:</label>
-  <input type="text" name="nombres" required id="nombres" />
+  <input type="text" name="nombres" autofocus required id="nombres" required />
 
   <label for="apellidos">Apellidos:</label>
-  <input type="text" name="apellidos" required id="apellidos" />
+  <input type="text" name="apellidos" required id="apellidos" required />
 
   <label for="usuario">Usuario:</label>
-  <input type="text" name="usuario" autofocus required id="usuario" />
+  <input type="text" name="usuario" required id="usuario" required />
 
   <label for="contra1">Contraseña:</label>
-  <input type="password" name="contra1" required id="contra1" />
+  <input type="password" name="contra1" required id="contra1" required />
 
   <label for="contra2">Confirmar la contraseña:</label>
-  <input type="password" name="contra2" required id="contra2" />
+  <input type="password" name="contra2" required id="contra2" required />
 
   <button>Registrarse</button>
 </form>

@@ -1,0 +1,5 @@
+@import url("variables.css");
+
+main {
+  background-color: var(--primary-light);
+}

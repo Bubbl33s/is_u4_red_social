@@ -1,19 +1,23 @@
 {% extends "base.html" %}
+{% load static %}
 {% block title %}Iniciar Sesión{% endblock title %}
+{% block style %}
+<link rel="stylesheet" href="{% static "css/signin.css" %}">
+{% endblock style %}
+
 {% block content %}
-
-<h1>Signin</h1>
-
-<form action="/signin/" method="POST">
-  {% csrf_token %}
-
-  <label for="usuario">Usuario:</label>
-  <input type="text" name="usuario" autofocus required id="usuario" />
-
-  <label for="contra">Contraseña:</label>
-  <input type="password" name="contra" required id="contra" />
-
-  <button>Iniciar Sesión</button>
-</form>
+<main>
+  <form action="/signin/" method="POST">
+    {% csrf_token %}
+  
+    <label for="usuario">Usuario:</label>
+    <input type="text" name="usuario" autofocus required id="usuario" />
+  
+    <label for="contra">Contraseña:</label>
+    <input type="password" name="contra" required id="contra" />
+  
+    <button>Iniciar Sesión</button>
+  </form>
+</main>
 
 {% endblock content %}
