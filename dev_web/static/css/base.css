@@ -1,9 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap');
+
 :root {
   --primary-red: rgb(218, 0, 55);
   --primary-gray: rgb(68, 68, 68);
   --primary-black: rgb(23, 23, 23);
   --primary-light: rgb(237, 237, 237);
-  --font-family: 'Arial, sans-serif';
 }
 
 body {
@@ -12,4 +13,23 @@ body {
     var(--primary-red),
     var(--primary-black)
     );
+  font-family: 'Nanum Gothic', sans-serif;
+}
+
+.btn-black {
+  background-color: var(--primary-black);
+  border: 2px solid var(--primary-black);
+  color: var(--primary-light);
+}
+
+.btn-black:hover {
+  border: 2px solid var(--primary-black);
+}
+
+a {
+  color: var(--primary-red);
+}
+
+.fs-label {
+  font-size: 1.15rem;
 }

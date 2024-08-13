@@ -6,17 +6,28 @@
 {% endblock style %}
 
 {% block content %}
-<main>
-  <form action="/signin/" method="POST">
+<main class='d-flex justify-content-center align-items-center vh-100'>
+  <form method="POST" class="main-form rounded-3 p-4 pb-2 fw-bold fs-label mx-auto">
     {% csrf_token %}
-  
-    <label for="usuario">Usuario:</label>
-    <input type="text" name="usuario" autofocus required id="usuario" />
-  
-    <label for="contra">Contraseña:</label>
-    <input type="password" name="contra" required id="contra" />
-  
-    <button>Iniciar Sesión</button>
+    <h1 class="text-center fs-3 fw-bolder mb-3">Accede a DevWeb</h1>
+
+    <div class="form-group mb-2 fw-bolder">
+      <label class="mb-1" for="usuario">Usuario</label>
+      <input class="form-control" type="text" name="usuario" autofocus required id="usuario" placeholder="Ingresa tu usuario" />
+    </div>
+
+    <div class="form-group mb-4 fw-bolder">
+      <label class="mb-1" for="contra">Contraseña</label>
+      <input class="form-control" type="password" name="contra" required id="contra" placeholder="Ingresa tu contraseña" />  
+    </div>
+    
+    <div class="form-group mb-3 text-center">
+      <button class="btn btn-black fw-bold fs-label">Iniciar sesión</button>
+    </div>
+
+    <div class="form-group text-center fw-lighter fs-6">
+      <p>Si aún no tienes cuenta <a href="{% url "signup" %}" class="text-decoration-none fw-bolder">únete aquí</a></p>
+    </div>
   </form>
 </main>
 

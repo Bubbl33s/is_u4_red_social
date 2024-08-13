@@ -1,24 +1,48 @@
-{% extends "base.html" %} {% block content %}
-<h1>Signup</h1>
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Iniciar Sesión{% endblock title %}
+{% block style %}
+<link rel="stylesheet" href="{% static "css/signin.css" %}">
+{% endblock style %}
 
-<form action="" method="POST">
-  {% csrf_token %}
+{% block content %}
+<main class='d-flex justify-content-center align-items-center vh-100 mx-auto'>
+  <form action="" method="POST" class="main-form rounded-3 p-4 pb-2 fw-bold fs-label">
+    {% csrf_token %}
+    <h1 class="text-center fs-3 fw-bolder mb-3">Únete a DevWeb</h1>
+    
+    <div class="form-group mb-2 fw-bolder">
+      <label class="mb-1"  for="nombres">Nombres</label>
+      <input class="form-control" type="text" name="nombres" autofocus id="nombres" required placeholder="Ingresa tus nombres" />
+    </div>
 
-  <label for="nombres">Nombres:</label>
-  <input type="text" name="nombres" autofocus required id="nombres" required />
+    <div class="form-group mb-2 fw-bolder">
+      <label class="mb-1"  for="apellidos">Apellidos</label>
+      <input class="form-control" type="text" name="apellidos" id="apellidos" required placeholder="Ingresa tus apellidos" />
+    </div>
 
-  <label for="apellidos">Apellidos:</label>
-  <input type="text" name="apellidos" required id="apellidos" required />
+    <div class="form-group mb-2 fw-bolder">
+      <label class="mb-1"  for="usuario">Usuario</label>
+      <input class="form-control" type="text" name="usuario" id="usuario" required placeholder="Ingresa tu usuario" />
+    </div>
 
-  <label for="usuario">Usuario:</label>
-  <input type="text" name="usuario" required id="usuario" required />
+    <div class="form-group mb-2 fw-bolder">
+      <label class="mb-1"  for="contra1">Contraseña</label>
+      <input class="form-control" type="password" name="contra1" id="contra1" required placeholder="Ingresa tu contraseña" />
+    </div>
 
-  <label for="contra1">Contraseña:</label>
-  <input type="password" name="contra1" required id="contra1" required />
+    <div class="form-group mb-4 fw-bolder">
+      <label class="mb-1"  for="contra2">Confirmar la contraseña</label>
+      <input class="form-control" type="password" name="contra2" id="contra2" required placeholder="Confirma tu contraseña" />
+    </div>
 
-  <label for="contra2">Confirmar la contraseña:</label>
-  <input type="password" name="contra2" required id="contra2" required />
+    <div class="form-group mb-3 text-center">
+      <button class="btn btn-black fw-bold fs-label">Registrarse</button>
+    </div>
 
-  <button>Registrarse</button>
-</form>
+    <div class="form-group text-center fw-lighter fs-6">
+      <p>¿Ya tienes cuenta? <a href="{% url "signin" %}" class="text-decoration-none fw-bolder">Accede aquí</a></p>
+    </div>
+  </form>
+</main>
 {% endblock content %}
