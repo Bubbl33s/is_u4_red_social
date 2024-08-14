@@ -1,5 +1,13 @@
-@import url("variables.css");
-
-main {
+.main-form {
   background-color: var(--primary-light);
+  width: 25vw;
+  min-width: 400px;
+  max-width: 500px;
+}
+
+@media screen and (max-width: 768px) {
+  .main-form {
+    width: 90vw;
+    min-width: 350px;
+  }
 }

@@ -24,7 +24,7 @@ def signin(request):
             login(request, usuario)
             messages.success(request, f'Sesión iniciada')
         
-        return redirect('temp')
+        return redirect('feed')
     
     logout(request)
     
@@ -48,7 +48,7 @@ def signup(request):
                 user.save()
                 login(request, user)
 
-                return redirect('temp')
+                return redirect('feed')
 
             # Manejar el error de usuario ya existente
             except IntegrityError:

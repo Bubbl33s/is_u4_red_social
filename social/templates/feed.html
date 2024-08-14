@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Feed{% endblock title %}
+{% block style %}
+<link rel="stylesheet" href="{% static "css/feed.css" %}" />
+{% endblock style %}
+
+{% block content %}
+<div class="container-fluid d-flex p-3 vh-100 justify-content-between gap-2">
+  {% comment %} Main feed {% endcomment %}
+  <main class="feed flex-grow-1 rounded-3 p-3">
+    <p>a</p>
+  </main>
+  
+  {% comment %} Aside users container {% endcomment %}
+  <aside class="usuarios-container rounded-3 p-3">
+    <h2>Otros devs</h2>
+    <div class="usuarios">
+      {% for usuario in usuarios %}
+      <div class="usuario py-2 px-3 d-flex align-items-center gap-3">
+        <img
+        class="rounded-circle"
+        src="{{ usuario.imagen.url }}"
+        alt="{{ usuario.user.first_name }} {{ usuario.user.last_name }}"
+        />
+        <p class="m-0">{{ usuario.user.first_name }} {{ usuario.user.last_name }}</p>
+      </div>
+      {% endfor %}
+    </div>
+  </aside>
+</div>
+{% endblock content %}

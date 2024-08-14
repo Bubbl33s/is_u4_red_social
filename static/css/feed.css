@@ -1,0 +1,41 @@
+main {
+  background-color: var(--primary-light);
+}
+
+.usuarios-container {
+  background-color: var(--primary-light);
+  height: 90vh;
+  overflow-y: scroll;
+  width: 25vw;
+  min-width: 300px;
+}
+
+.usuario {
+  border: 1px solid var(--primary-red-em1);
+  border-bottom: 1px solid transparent;
+}
+
+.usuario:first-of-type {
+  border-top-left-radius: 0.5rem;
+  border-top-right-radius: 0.5rem;
+}
+
+.usuario:last-of-type {
+  border-bottom: 1px solid var(--primary-red-em1);
+  border-bottom-left-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
+}
+
+.usuario img {
+  width: 15%;
+}
+
+.usuario p {
+  font-size: 1.1rem;
+}
+
+@media screen and (max-width: 768px) {
+  .usuario p {
+    font-size: .8rem;
+  }
+}
