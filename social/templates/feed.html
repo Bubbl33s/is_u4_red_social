@@ -7,27 +7,73 @@
 {% endblock style %}
 
 {% block content %}
-<div class="container-fluid d-flex p-3 vh-100 justify-content-between gap-2">
-  {% comment %} Main feed {% endcomment %}
-  <main class="feed flex-grow-1 rounded-3 p-3">
-    <p>a</p>
-  </main>
-  
-  {% comment %} Aside users container {% endcomment %}
-  <aside class="usuarios-container rounded-3 p-3">
-    <h2>Otros devs</h2>
-    <div class="usuarios">
-      {% for usuario in usuarios %}
-      <div class="usuario py-2 px-3 d-flex align-items-center gap-3">
-        <img
-        class="rounded-circle"
-        src="{{ usuario.imagen.url }}"
-        alt="{{ usuario.user.first_name }} {{ usuario.user.last_name }}"
-        />
-        <p class="m-0">{{ usuario.user.first_name }} {{ usuario.user.last_name }}</p>
+<div class="container-fluid vh-100 p-3 d-flex flex-column gap-2">
+  <header>
+    <nav>
+      <a class="btn btn-black" href="{% url "cerrar_sesion" %}">Cerrar sesión</a>
+    </nav>
+  </header>
+
+  <div class="d-flex h-100 gap-2 justify-content-between">
+    {% comment %} Main feed {% endcomment %}
+    <section class="main-container rounded-3 p-3 flex-grow-1 d-flex justify-content-between gap-2">
+      <section class="create-post">
+        <form action="{% url 'crear_post' %}" method="post" class="d-flex gap-3">
+          {% csrf_token %}
+          
+          <input
+          type="text"
+          name="contenido"
+          id="contenido"
+          class="form-control"
+          placeholder="¿Qué estás pensando?"
+          />
+
+          <input type="file" name="imagen" id="imagen" class="form-control" accept='image/*' />
+
+          <button type="submit" class="btn btn-primary">Publicar</button>
+        </form>
+      </section>
+
+      <main class="feed">
+        {% for post in posts %}
+        <article class="post rounded-3 p-3 my-3">
+          <header class="d-flex gap-3">
+            <img
+            class="rounded-circle"
+            src="{{ post.usuario.imagen.url }}"
+            alt="{{ post.usuario.user.first_name }} {{ post.usuario.user.last_name }}"
+            />
+            <div>
+              <h3 class="m-0">{{ post.usuario.user.first_name }} {{ post.usuario.user.last_name }}</h3>
+              <p class="m-0">{{ post.fecha }}</p>
+            </div>
+          </header>
+          <p>{{ post.contenido }}</p>
+          {% if post.imagen %}
+          <img src="{{ post.imagen.url }}" alt="{{ post.contenido }}" class="img-fluid" />
+          {% endif %}
+        </article>
+        {% endfor %}
+      </main>
+    </section>
+
+    {% comment %} Aside users container {% endcomment %}
+    <aside class="usuarios-container rounded-3 p-3">
+      <h2>Otros devs</h2>
+      <div class="usuarios">
+        {% for usuario in usuarios %}
+        <div class="usuario py-2 px-3 d-flex align-items-center gap-3">
+          <img
+          class="rounded-circle"
+          src="{{ usuario.imagen.url }}"
+          alt="{{ usuario.user.first_name }} {{ usuario.user.last_name }}"
+          />
+          <p class="m-0">{{ usuario.user.first_name }} {{ usuario.user.last_name }}</p>
+        </div>
+        {% endfor %}
       </div>
-      {% endfor %}
-    </div>
-  </aside>
+    </aside>
+  </div>
 </div>
 {% endblock content %}

@@ -62,5 +62,7 @@ def signup(request):
     return render(request, 'signup.html')
 
 
-def temp(request):
-    return render(request, 'temp.html')
+def cerrar_sesion(request):
+    logout(request)
+    
+    return redirect('signin')
