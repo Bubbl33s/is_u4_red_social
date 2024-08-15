@@ -1,0 +1,74 @@
+
+@media screen and (max-width: 992px) {
+  .link-perfil > img,
+  .post-img {
+    height: 45px;
+  }
+
+  .link-perfil > a {
+    font-size: 1.3rem;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .link-perfil > img,
+  .post-img {
+    height: 40px;
+  }
+
+  .link-perfil > a {
+    font-size: 1.2rem;
+  }
+  
+  label,
+  .post-header h5,
+  input,
+  #contenido {
+    font-size: 1rem;
+  }
+
+  .post {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .usuario p {
+    font-size: .8rem;
+  }
+
+  #contenido {
+    height: 100px;
+  }
+}
+
+
+@media screen and (max-width: 576px) {
+  .body-container {
+    padding: 10px !important;
+    gap: 10px !important;
+  }
+
+  #logout p {
+    display: none;
+  }
+
+  #logout svg {
+    display: block;
+  }
+
+  .link-perfil > img,
+  .post-img {
+    height: 30px;
+  }
+
+  .link-perfil > a {
+    font-size: 1rem;
+  }
+
+  label,
+  .post-header h5,
+  input,
+  #contenido {
+    font-size: .9rem;
+  }
+}

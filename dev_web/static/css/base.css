@@ -27,10 +27,6 @@ body {
   border: 2px solid var(--primary-black);
 }
 
-a {
-  color: var(--primary-red);
-}
-
 .fs-label {
   font-size: 1.15rem;
 }

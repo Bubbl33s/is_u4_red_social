@@ -4,73 +4,90 @@
 {% block title %}Feed{% endblock title %}
 {% block style %}
 <link rel="stylesheet" href="{% static "css/feed.css" %}" />
+<link rel="stylesheet" href="{% static "css/feed_mq.css" %}">
 {% endblock style %}
 
 {% block content %}
-<div class="container-fluid vh-100 p-3 d-flex flex-column gap-2">
-  <header>
-    <nav>
-      <a class="btn btn-black" href="{% url "cerrar_sesion" %}">Cerrar sesión</a>
-    </nav>
-  </header>
+<div class="container-fluid vh-100 d-flex flex-column p-0">
+  <!-- Navbar -->
+  <nav class="main-navbar">
+    <ul class="m-0 px-4 py-2 d-flex justify-content-between align-items-center">
+      <li class="link-perfil d-flex align-items-center gap-2">
+        <img src="{{ user.perfilusuario.imagen.url }}" alt="">
+        <a class="fw-bold" href="#">{{ user.first_name }} {{ user.last_name }}</a>
+      </li>
 
-  <div class="d-flex h-100 gap-2 justify-content-between">
-    {% comment %} Main feed {% endcomment %}
-    <section class="main-container rounded-3 p-3 flex-grow-1 d-flex justify-content-between gap-2">
-      <section class="create-post">
-        <form action="{% url 'crear_post' %}" method="post" class="d-flex gap-3">
-          {% csrf_token %}
-          
-          <input
-          type="text"
-          name="contenido"
-          id="contenido"
-          class="form-control"
-          placeholder="¿Qué estás pensando?"
-          />
+      <li>
+        <a id="logout" class="btn btn-black fw-bold fs-6" href="{% url "cerrar_sesion" %}">
+          <p class="m-0">Cerrar sesión</p>
+          <svg fill="#ffffff" height="200px" width="200px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 384.971 384.971" xml:space="preserve"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <g id="Sign_Out"> <path d="M180.455,360.91H24.061V24.061h156.394c6.641,0,12.03-5.39,12.03-12.03s-5.39-12.03-12.03-12.03H12.03 C5.39,0.001,0,5.39,0,12.031V372.94c0,6.641,5.39,12.03,12.03,12.03h168.424c6.641,0,12.03-5.39,12.03-12.03 C192.485,366.299,187.095,360.91,180.455,360.91z"></path> <path d="M381.481,184.088l-83.009-84.2c-4.704-4.752-12.319-4.74-17.011,0c-4.704,4.74-4.704,12.439,0,17.179l62.558,63.46H96.279 c-6.641,0-12.03,5.438-12.03,12.151c0,6.713,5.39,12.151,12.03,12.151h247.74l-62.558,63.46c-4.704,4.752-4.704,12.439,0,17.179 c4.704,4.752,12.319,4.752,17.011,0l82.997-84.2C386.113,196.588,386.161,188.756,381.481,184.088z"></path> </g> <g> </g> <g> </g> <g> </g> <g> </g> <g> </g> <g> </g> </g> </g></svg>
+        </a>
+      </li>
+    </ul>
+  </nav>
 
-          <input type="file" name="imagen" id="imagen" class="form-control" accept='image/*' />
+  <!-- Body Container -->
+  <div class="body-container flex-grow-1 d-flex gap-3 m-0 p-3 justify-content-between overflow-hidden row">
+    <!-- Crear Post -->
+    <section class="crear-post-container create-post rounded-3 p-3 col-sm-12 col-md-4 col-lg-4">
+      <form action="{% url 'crear_post' %}" method="post" class="d-flex flex-column gap-2" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="row">
+          <div class="form-group col-sm-8 col-md-12">
+            <label for="contenido" class="mb-1">¿Qué estás pensando?</label>
+            <textarea name="contenido" id="contenido" class="form-control" placeholder="Con ganas de aprender..."></textarea>
+          </div>
 
-          <button type="submit" class="btn btn-primary">Publicar</button>
-        </form>
-      </section>
-
-      <main class="feed">
-        {% for post in posts %}
-        <article class="post rounded-3 p-3 my-3">
-          <header class="d-flex gap-3">
-            <img
-            class="rounded-circle"
-            src="{{ post.usuario.imagen.url }}"
-            alt="{{ post.usuario.user.first_name }} {{ post.usuario.user.last_name }}"
-            />
-            <div>
-              <h3 class="m-0">{{ post.usuario.user.first_name }} {{ post.usuario.user.last_name }}</h3>
-              <p class="m-0">{{ post.fecha }}</p>
+          <div class="col-sm-4 col-md-12">
+            <div class="form-group mt-1 mb-3">
+              <label for="imagen" class="mb-1">Agrega una imagen</label>
+              <input type="file" name="imagen" id="imagen" class="form-control" accept='image/*' />
             </div>
-          </header>
-          <p>{{ post.contenido }}</p>
-          {% if post.imagen %}
-          <img src="{{ post.imagen.url }}" alt="{{ post.contenido }}" class="img-fluid" />
-          {% endif %}
-        </article>
-        {% endfor %}
-      </main>
+    
+            <div class="form-group">
+              <button type="submit" class="btn btn-black fw-bold form-control">Publicar</button>
+            </div>
+          </div>
+        </div>
+      </form>
     </section>
 
-    {% comment %} Aside users container {% endcomment %}
-    <aside class="usuarios-container rounded-3 p-3">
-      <h2>Otros devs</h2>
+    <!-- Feed -->  
+    <main class="feed flex-grow-1 overflow-y-auto rounded-3 p-3 col-sm-12 col-md-6 col-lg-4 h-100">
+      {% for post in posts %}
+      <article class="post rounded-3 px-3 mt-3">
+        <header class="post-header d-flex justify-content-between align-items-center">
+          <div class="d-flex gap-3 align-items-center">
+            <img class="rounded-circle post-img" src="{{ post.autor.imagen.url }}" alt="{{ post.autor.user.first_name }} {{ post.autor.user.last_name }}">
+            <div>
+              {% if user != post.autor.user %}
+                <h5 class="m-0">{{ post.autor.user.first_name }} {{ post.autor.user.last_name }}</h5>
+              {% else %}
+                <h5 class="m-0">Tú</h5>
+              {% endif %}
+            </div>
+          </div>
+          <p class="post-time m-0">{{ post.creado }}</p>
+        </header>
+        <p class="post-content">{{ post.contenido }}</p>
+        {% if post.imagen %}
+        <img src="{{ post.imagen.url }}" alt="{{ post.contenido }}" class="post-image img-fluid mb-3" />
+        {% endif %}
+      </article>
+      <hr class="custom-hr my-1" />
+      {% endfor %}
+    </main>      
+
+    <!-- Usuarios Container -->
+    <aside class="usuarios-container h-100 flex-grow-1 overflow-y-auto rounded-3 p-3 col-sm-12 col-md-6 col-lg-4">
+      <h4>Otros devs</h4>
       <div class="usuarios">
         {% for usuario in usuarios %}
         <div class="usuario py-2 px-3 d-flex align-items-center gap-3">
-          <img
-          class="rounded-circle"
-          src="{{ usuario.imagen.url }}"
-          alt="{{ usuario.user.first_name }} {{ usuario.user.last_name }}"
-          />
+          <img class="rounded-circle" src="{{ usuario.imagen.url }}" alt="{{ usuario.user.first_name }} {{ usuario.user.last_name }}">
           <p class="m-0">{{ usuario.user.first_name }} {{ usuario.user.last_name }}</p>
         </div>
+        <hr class="custom-hr my-1" />
         {% endfor %}
       </div>
     </aside>

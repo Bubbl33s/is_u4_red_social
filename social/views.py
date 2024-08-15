@@ -8,7 +8,7 @@ from social.models import Post
 def feed(request):
     usuarios = PerfilUsuario.objects.all()
     # Del array de usuarios quitar el usuario actual y los superusuarios
-    usuarios = [usuario for usuario in usuarios if not usuario.user.is_superuser and usuario.user != request]
+    usuarios = [usuario for usuario in usuarios if not usuario.user.is_superuser and usuario.user != request.user]
     
     # Obtener los posts
     posts = Post.objects.all().order_by('-creado')

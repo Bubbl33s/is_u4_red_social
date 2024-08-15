@@ -1,0 +1,35 @@
+
+@media screen and (max-width: 992px) {
+  .link-perfil > img {
+    width: 30px;
+  }
+
+  .link-perfil > a {
+    font-size: 1.4rem;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .link-perfil > img {
+    width: 40px;
+  }
+
+  .link-perfil > a {
+    font-size: 1.2rem;
+  }
+
+  .usuario p {
+    font-size: .8rem;
+  }
+}
+
+
+@media screen and (max-width: 576px) {
+  .link-perfil > img {
+    width: 30px;
+  }
+
+  .link-perfil > a {
+    font-size: 1rem;
+  }
+}
