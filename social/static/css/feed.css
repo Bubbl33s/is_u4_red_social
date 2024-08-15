@@ -3,7 +3,7 @@
   background-color: var(--primary-light);
 }
 
-.main-navbar > ul {
+.main-navbar ul {
   list-style: none;
 }
 
@@ -21,10 +21,23 @@
   cursor: pointer;
 }
 
-#logout svg {
+#logout svg,
+#home svg {
   height: 1.5rem;
   display: none;
-  width: 30px;
+  width: 20px;
+  height: 24px;
+}
+
+#toggle-usuarios,
+#close-usuarios {
+  display: none;
+}
+
+#toggle-usuarios button {
+  padding: 0 !important;
+  height: 40px;
+  width: 48px;
 }
 
 /* Crear post */
@@ -42,7 +55,7 @@ label {
 }
 
 /* Feed */
-.feed {
+.post {
   background-color: var(--primary-light);
 }
 
@@ -50,19 +63,22 @@ label {
 .post-header {
   border-bottom: 1px solid var(--primary-light);
   padding-bottom: 0.5rem;
+  background-color: var(--primary-red-em1);
+  color: var(--primary-light);
+  border: 1px solid var(--primary-light);
 }
 
 .post-img {
   height: 40px;
   object-fit: cover;
+  background-color: var(--primary-light);
 }
 
 .post-time {
   font-size: 0.85rem;
-  color: var(--primary-gray);
 }
 
-.post-content {
+.post-content p {
   margin-top: 0.75rem;
   font-size: 1rem;
   color: var(--primary-black);
@@ -80,15 +96,32 @@ label {
   border-top: 2px solid var(--primary-red-em1);
 }
 
-/* Usuarios */
+.custom-hr:last-of-type {
+  display: none;
+}
+
 .usuarios-container {
+  display: block;
   background-color: var(--primary-light);
   width: 20vw;
   min-width: 250px;
-  /* display: none; */
+}
+
+.usuario {
+  text-decoration: none;
+  color: var(--primary-red-em1);
+}
+
+.usuario:hover {
+  cursor: pointer;
+  background-color: var(--primary-red-em1);
+  color: var(--primary-light);
+  transition: 0.3s;
+  font-weight: bold;
 }
 
 .usuario img {
+  background-color: #fff;
   width: 10%;
 }
 
