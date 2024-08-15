@@ -53,17 +53,15 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-  const deleteButtons = document.querySelectorAll(".delete-button");
+  const deleteButtons = document.querySelectorAll(".btn-delete");
   deleteButtons.forEach((button) => {
     button.addEventListener("click", function () {
       const postId = this.dataset.postId;
-      const confirmation = confirm(
-        "¿Estás seguro de que deseas eliminar este post?"
-      );
 
-      if (confirmation) {
-        window.location.href = `/eliminar_post/${postId}/`; // Asegúrate de que esta URL esté definida en tu URLconf
-      }
+      // Actualizar la URL del formulario con el post_id
+      var form = document.getElementById("deletePostForm");
+      var actionUrl = form.getAttribute("action").replace("0", postId);
+      form.setAttribute("action", actionUrl);
     });
   });
 });

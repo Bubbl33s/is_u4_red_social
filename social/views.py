@@ -62,10 +62,23 @@ def editar_post(request, post_id):
 
     return redirect('feed')
 
+
 @login_required
 def eliminar_post(request, post_id):
     post = get_object_or_404(Post, id=post_id)
     if request.method == "POST":
         post.delete()
-        return redirect('nombre_de_la_vista_del_feed')
+        return redirect('feed')
     return HttpResponse(status=405)
+
+
+@login_required
+def perfil_usuario(request, perfil_id):
+    perfil_usuario = get_object_or_404(PerfilUsuario, id=perfil_id)
+    posts = Post.objects.filter(autor=perfil_usuario).order_by('-creado')
+    
+    return render(request, 'perfil.html', {
+        'perfil_usuario': perfil_usuario,
+        'posts': posts,
+    })
+
