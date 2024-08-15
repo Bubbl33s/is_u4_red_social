@@ -1,5 +1,6 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
+from django.http import HttpResponse
 from usuarios.models import PerfilUsuario
 from social.models import Post
 
@@ -39,3 +40,32 @@ def crear_post(request):
         return redirect('feed')
     
     return None
+
+
+@login_required
+def editar_post(request, post_id):
+    post = get_object_or_404(Post, id=post_id)
+    
+    if request.method == "POST":
+        post.contenido = request.POST['contenido']
+        
+        if 'imagen' in request.FILES:
+            post.imagen = request.FILES['imagen']
+        
+        try:
+            post.save()
+                    
+        except Exception as e:
+            print(e)
+        
+        return redirect('feed')
+
+    return redirect('feed')
+
+@login_required
+def eliminar_post(request, post_id):
+    post = get_object_or_404(Post, id=post_id)
+    if request.method == "POST":
+        post.delete()
+        return redirect('nombre_de_la_vista_del_feed')
+    return HttpResponse(status=405)

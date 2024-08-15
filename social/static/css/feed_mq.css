@@ -48,7 +48,8 @@
   label,
   .post-header h5,
   input,
-  #contenido {
+  #contenido,
+  #editContent {
     font-size: 1rem;
   }
 
@@ -67,8 +68,11 @@
   #contenido {
     height: 150px;
   }
-}
 
+  .post-image {
+    max-height: 26vh;
+  }
+}
 
 @media screen and (max-width: 576px) {
   .main-navbar > ul {
@@ -102,7 +106,8 @@
   label,
   .post-header h5,
   input,
-  #contenido {
+  #contenido,
+  #editContent {
     font-size: .9rem;
   }
 

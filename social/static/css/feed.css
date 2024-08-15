@@ -80,6 +80,7 @@ label {
 
 .post-content p {
   margin-top: 0.75rem;
+  margin-bottom: 0.4rem;
   font-size: 1rem;
   color: var(--primary-black);
 }
@@ -90,6 +91,43 @@ label {
   border-radius: 0.5rem;
   display: block;
   margin: 0 auto;
+}
+
+.likes svg {
+  stroke: var(--primary-gray);
+  width: 40px;
+}
+
+.likes svg:hover,
+.post-options svg:hover {
+  transform: scale(1.2);
+  cursor: pointer;
+  stroke: var(--primary-black);
+}
+
+.post-options button {
+  border-radius: 5px;
+  width: 40px;
+  stroke: var(--primary-red-em1);
+  padding: 0;
+}
+
+.post-options svg {
+  padding: 8px;
+  transition: 0.3s;
+}
+
+.post-options .btn-black svg,
+.post-options .btn-red svg {
+  stroke: var(--primary-light);
+}
+
+.post-options .btn-black svg:hover {
+  stroke: var(--primary-black);
+}
+
+.post-options .btn-red svg:hover {
+  stroke: var(--primary-red-em1);
 }
 
 .custom-hr {
@@ -127,4 +165,10 @@ label {
 
 .usuario p {
   font-size: 1.1rem;
+}
+
+/* Edit */
+#img-edit {
+  max-width: 90%;
+  max-height: 200px;
 }
