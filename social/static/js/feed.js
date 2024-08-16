@@ -64,4 +64,47 @@ document.addEventListener("DOMContentLoaded", function () {
       form.setAttribute("action", actionUrl);
     });
   });
+
+  let csrfToken = document
+    .querySelector('meta[name="csrf-token"]')
+    .getAttribute("content");
+
+  const match = csrfToken.match(/value="([^"]+)"/);
+
+  if (match) {
+    csrfToken = match[1];
+  }
+
+  console.log(csrfToken);
+
+  document.querySelectorAll(".likes").forEach((likeDiv) => {
+    likeDiv.addEventListener("click", () => {
+      const postId = likeDiv.dataset.postId;
+
+      fetch(`/social/like/${postId}/`, {
+        method: "POST",
+        headers: {
+          "X-CSRFToken": csrfToken,
+          "Content-Type": "application/json",
+        },
+      })
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error("Network response was not ok");
+          }
+          return response.json();
+        })
+        .then((data) => {
+          if (data.liked) {
+            likeDiv.classList.add("liked");
+          } else {
+            likeDiv.classList.remove("liked");
+          }
+          likeDiv.querySelector("span").textContent = data.likes_count;
+        })
+        .catch((error) => {
+          console.error("There was a problem with the fetch operation:", error);
+        });
+    });
+  });
 });

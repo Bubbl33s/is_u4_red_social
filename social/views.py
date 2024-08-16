@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from usuarios.models import PerfilUsuario
-from social.models import Post
+from social.models import Post, Like
 
 
 @login_required
@@ -106,3 +106,23 @@ def editar_perfil(request, perfil_id):
             print(e)
         
     return redirect('perfil', perfil_id=perfil_id)
+
+
+@login_required
+def like_post(request, post_id):
+    post = get_object_or_404(Post, id=post_id)
+    user = request.user
+
+    if request.method == 'POST':
+        if Like.objects.filter(usuario=user, post=post).exists():
+            # Si ya le gustó, eliminar el like
+            Like.objects.filter(usuario=user, post=post).delete()
+            liked = False
+        else:
+            # Si no le gustó, crear el like
+            Like.objects.create(usuario=user, post=post)
+            liked = True
+        
+        return JsonResponse({'liked': liked, 'likes_count': post.like_set.count()})
+
+    return JsonResponse({'error': 'Invalid request'}, status=400)
