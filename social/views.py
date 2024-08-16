@@ -77,8 +77,32 @@ def perfil_usuario(request, perfil_id):
     perfil_usuario = get_object_or_404(PerfilUsuario, id=perfil_id)
     posts = Post.objects.filter(autor=perfil_usuario).order_by('-creado')
     
+    usuarios = PerfilUsuario.objects.all()
+    # Del array de usuarios quitar el usuario actual y los superusuarios
+    usuarios = [usuario for usuario in usuarios if not usuario.user.is_superuser and usuario.user != request.user]
+    
+
     return render(request, 'perfil.html', {
         'perfil_usuario': perfil_usuario,
         'posts': posts,
+        'usuarios': usuarios,
     })
 
+
+@login_required
+def editar_perfil(request, perfil_id):
+    perfil_usuario = get_object_or_404(PerfilUsuario, id=perfil_id)
+    
+    if request.method == "POST":
+        perfil_usuario.bio = request.POST['bio']
+        
+        if 'imagen' in request.FILES:
+            perfil_usuario.imagen = request.FILES['imagen']
+        
+        try:
+            perfil_usuario.save()
+                    
+        except Exception as e:
+            print(e)
+        
+    return redirect('perfil', perfil_id=perfil_id)

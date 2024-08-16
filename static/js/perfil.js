@@ -1,25 +1,25 @@
 document.addEventListener("DOMContentLoaded", function () {
-  const toggleUsuarios = document.getElementById("toggle-usuarios");
-  const usuariosContainer = document.querySelector(".usuarios-container");
-  const closeUsuarios = document.getElementById("close-usuarios");
+  const editPerfilModal = new bootstrap.Modal(
+    document.getElementById("editPerfilModal")
+  );
 
-  toggleUsuarios.addEventListener("click", function () {
-    usuariosContainer.classList.toggle("active");
-  });
+  document
+    .getElementById("editar-pfp-button")
+    .addEventListener("click", function () {
+      const perfilId = this.dataset.perfilId;
+      const perfilBio = this.dataset.perfilBio;
+      const perfilImage = this.dataset.perfilImage;
 
-  closeUsuarios.addEventListener("click", function () {
-    usuariosContainer.classList.remove("active");
-  });
+      // Actualizar la URL del formulario con el perfil_id
+      var form = document.getElementById("editPerfilForm");
+      var actionUrl = form.getAttribute("action").replace("0", perfilId);
+      form.setAttribute("action", actionUrl);
 
-  document.addEventListener("click", function (event) {
-    if (
-      usuariosContainer.classList.contains("active") &&
-      !usuariosContainer.contains(event.target) &&
-      !toggleUsuarios.contains(event.target)
-    ) {
-      usuariosContainer.classList.remove("active");
-    }
-  });
+      document.getElementById("editBio").value = perfilBio;
+      document.getElementById("PFP-edit").src = perfilImage;
+
+      editPerfilModal.show();
+    });
 
   // Modales
   const editButtons = document.querySelectorAll(".btn-edit");

@@ -5,6 +5,11 @@
   max-width: 500px;
 }
 
+.main-form a {
+  color: var(--primary-red);
+  font-weight: bold;
+}
+
 @media screen and (max-width: 768px) {
   .main-form {
     width: 90vw;

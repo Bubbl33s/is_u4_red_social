@@ -13,7 +13,7 @@
   <nav class="main-navbar">
     <ul class="m-0 px-4 py-2 d-flex justify-content-between align-items-center">
       <li class="link-perfil d-flex align-items-center gap-2">
-        <img src="{{ user.perfilusuario.imagen.url }}" alt="">
+        <img class="rounded-circle" src="{{ user.perfilusuario.imagen.url }}" alt="">
         <a class="fw-bold" href="{% url "perfil" user.perfilusuario.id %}">{{ user.first_name }} {{ user.last_name }}</a>
       </li>
       <li>

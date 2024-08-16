@@ -134,7 +134,7 @@ label {
   border-top: 2px solid var(--primary-red-em1);
 }
 
-.custom-hr:last-of-type {
+.usuarios-container .custom-hr:last-of-type {
   display: none;
 }
 
@@ -171,4 +171,9 @@ label {
 #img-edit {
   max-width: 90%;
   max-height: 200px;
+}
+
+.modal-header {
+  background-color: var(--primary-red-em1);
+  color: var(--primary-light);
 }

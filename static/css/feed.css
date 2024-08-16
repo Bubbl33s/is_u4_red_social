@@ -21,15 +21,23 @@
   cursor: pointer;
 }
 
-#logout svg {
+#logout svg,
+#home svg {
   height: 1.5rem;
   display: none;
   width: 20px;
-  height: 20px;
+  height: 24px;
 }
 
-#toggle-usuarios {
+#toggle-usuarios,
+#close-usuarios {
   display: none;
+}
+
+#toggle-usuarios button {
+  padding: 0 !important;
+  height: 40px;
+  width: 48px;
 }
 
 /* Crear post */
@@ -72,16 +80,54 @@ label {
 
 .post-content p {
   margin-top: 0.75rem;
+  margin-bottom: 0.4rem;
   font-size: 1rem;
   color: var(--primary-black);
 }
 
 .post-image {
   object-fit: cover;
-  max-width: 100%;
+  max-height: 40vh;
   border-radius: 0.5rem;
   display: block;
   margin: 0 auto;
+}
+
+.likes svg {
+  stroke: var(--primary-gray);
+  width: 40px;
+}
+
+.likes svg:hover,
+.post-options svg:hover {
+  transform: scale(1.2);
+  cursor: pointer;
+  stroke: var(--primary-black);
+}
+
+.post-options button {
+  border-radius: 5px;
+  width: 40px;
+  stroke: var(--primary-red-em1);
+  padding: 0;
+}
+
+.post-options svg {
+  padding: 8px;
+  transition: 0.3s;
+}
+
+.post-options .btn-black svg,
+.post-options .btn-red svg {
+  stroke: var(--primary-light);
+}
+
+.post-options .btn-black svg:hover {
+  stroke: var(--primary-black);
+}
+
+.post-options .btn-red svg:hover {
+  stroke: var(--primary-red-em1);
 }
 
 .custom-hr {
@@ -92,37 +138,37 @@ label {
   display: none;
 }
 
-/* Usuarios */
 .usuarios-container {
-  position: fixed;
-  top: 0;
-  right: -100%; /* Oculto fuera de la pantalla */
-  width: 70%;
-  max-width: 300px;
-  height: 100%;
-  background-color: var(--primary-light);
-  transition: right 0.3s ease;
-  z-index: 1000;
-}
-
-.usuarios-container.active {
-  right: 0; /* Mueve el contenedor hacia la pantalla */
-}
-
-#toggle-usuarios {
-  display: none; /* Inicialmente oculto */
-}
-/* 
-.usuarios-container {
+  display: block;
   background-color: var(--primary-light);
   width: 20vw;
   min-width: 250px;
-} */
+}
+
+.usuario {
+  text-decoration: none;
+  color: var(--primary-red-em1);
+}
+
+.usuario:hover {
+  cursor: pointer;
+  background-color: var(--primary-red-em1);
+  color: var(--primary-light);
+  transition: 0.3s;
+  font-weight: bold;
+}
 
 .usuario img {
+  background-color: #fff;
   width: 10%;
 }
 
 .usuario p {
   font-size: 1.1rem;
+}
+
+/* Edit */
+#img-edit {
+  max-width: 90%;
+  max-height: 200px;
 }

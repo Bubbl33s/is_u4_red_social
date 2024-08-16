@@ -25,6 +25,18 @@ body {
 
 .btn-black:hover {
   border: 2px solid var(--primary-black);
+  transition: 0.3s;
+}
+
+.btn-red {
+  background-color: var(--primary-red-em1);
+  border: 2px solid var(--primary-red-em1);
+  color: var(--primary-light);
+}
+
+.btn-red:hover {
+  border: 2px solid var(--primary-red-em1);
+  transition: 0.3s;
 }
 
 .fs-label {

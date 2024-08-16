@@ -1,0 +1,49 @@
+/* Crear post */
+.perfil-container {
+  background-color: var(--primary-light);
+  height: fit-content;
+}
+
+.pfp img {
+  max-width: 100%;
+  max-height: 40vh;
+  display: block;
+  margin: 0 auto;
+}
+
+.bio p {
+  margin: 10px 0 0;
+}
+
+.perfil-container svg {
+  padding: 8px;
+  transition: 0.3s;
+}
+
+#editar-pfp-button {
+  border-radius: 5px;
+  width: 40px;
+  stroke: var(--primary-red-em1);
+  padding: 0;
+}
+
+#editar-pfp-button svg {
+  stroke: var(--primary-light);
+}
+
+#editar-pfp-button svg:hover {
+  stroke: var(--primary-black);
+}
+
+#editar-pfp-button svg:hover {
+  transform: scale(1.2);
+  cursor: pointer;
+  stroke: var(--primary-black);
+}
+
+@media screen and (max-width: 767px) {
+  .pfp img {
+    max-width: 100%;
+    max-height: 25vh;
+  }
+}
